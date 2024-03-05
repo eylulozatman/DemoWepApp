@@ -39,7 +39,17 @@ namespace DemoWepApp.Services
         internal object GetPetById(int id, List<Pet> petsList)
         {
             var pet = petsList.Find(p => p.Id == id);
-            return pet;
+            if(pet != null)
+            {
+                 return pet;
+            }
+            return null;
+        }
+
+        internal void DeletePet(object petToDelete, List<Pet> petsList)
+        {
+            petsList.Remove((Pet)petToDelete);
+            throw new NotImplementedException();
         }
     }
 }
