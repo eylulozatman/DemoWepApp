@@ -44,4 +44,20 @@ public class PetController : Controller
             return Ok();
         }
 
+
+     [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var petToDelete = _petService.GetPetById(id,PetsList); // _petService içindeki bir metod ile id'ye göre evcil hayvanı alırız.
+
+        if (petToDelete == null)
+        {
+            return NotFound(); // Eğer evcil hayvan bulunamazsa NotFound döneriz.
+        }
+
+        _petService.DeletePet(petToDelete,PetsList); // _petService içindeki bir metod ile evcil hayvanı sileriz.
+        return NoContent(); // Başarılı bir şekilde silme işlemi gerçekleşirse NoContent döneriz.
+}
+
+
 }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using DemoWepApp.Models;
 
-
 namespace DemoWepApp.Services
 {
     public class PetService
@@ -35,6 +34,12 @@ namespace DemoWepApp.Services
         private bool CheckIdOk(int id, List<Pet> petsList)
         {
             return !petsList.Any(p => p.Id == id);
+        }
+
+        internal object GetPetById(int id, List<Pet> petsList)
+        {
+            var pet = petsList.Find(p => p.Id == id);
+            return pet;
         }
     }
 }
